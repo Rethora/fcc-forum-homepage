@@ -4,8 +4,8 @@ const baseUrl = 'https://forum.freecodecamp.org';
 const baseUserUrl = 'https://www.freecodecamp.org/forum/u/'
 
 export const DataTable = ({ data }) => (
-    <Table celled inverted textAlign='center'>
-        <Table.Header>
+    <Table celled striped inverted textAlign='center'>
+        <Table.Header id='table-header'>
             <Table.Row>
                 <Table.HeaderCell collapsing content='#' />
                 <Table.HeaderCell content='Topic' />
@@ -21,8 +21,9 @@ export const DataTable = ({ data }) => (
             {
                 data.map((d, i) => (
                     <Table.Row key={i}>
-                        <Table.Cell content={i + 1} />
+                        <Table.Cell id='num-col' content={i + 1} />
                         <Table.Cell
+                            id='title-col'
                             content={
                                 <a
                                     href={baseUrl + '/t/' + d.topic_link}
@@ -63,11 +64,11 @@ export const DataTable = ({ data }) => (
                                 </div>
                             }
                         />
-                        <Table.Cell content={d.replies} />
-                        <Table.Cell content={kFormatter(d.views)}
+                        <Table.Cell id='reply-col' content={d.replies} />
+                        <Table.Cell id='view-col' content={kFormatter(d.views)}
                         />
-                        <Table.Cell content={!d.status ? <BsFillUnlockFill /> : <BsFillLockFill />} />
-                        <Table.Cell content={d.active} />
+                        <Table.Cell id='status-col' content={!d.status ? <BsFillUnlockFill /> : <BsFillLockFill />} />
+                        <Table.Cell id='active-col' content={d.active} />
                     </Table.Row>
                 ))
             }

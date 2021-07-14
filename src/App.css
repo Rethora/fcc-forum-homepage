@@ -9,3 +9,27 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+
+@media only screen and (max-width: 767px) {
+	#table-header {
+		display: none;
+	}
+	#title-col {
+		margin: 8px 0;
+	}
+	#num-col::before {
+		content: '# '
+	}
+	#reply-col::before {
+		content: 'replies: '
+	}
+	#view-col::before {
+		content: 'views: '
+	}
+	#status-col::before{
+		content: 'status: '
+	}
+	#active-col::before {
+		content: 'active '
+	}
+}
