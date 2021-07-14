@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+// modules
+const { useEffect, useState } = require('react');
+// functions
+const { fetchData } = require('./controllers/apiRoute');
+// components
+const { Loading } = require('./components/Loading');
+const { DataTable } = require('./components/DataTable');
+// styles
+require('./App.css');
+require('semantic-ui-css/semantic.min.css');
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const App = () => {
+
+	const [data, setData] = useState(false);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		fetchData().then(res => {
+			setData(res);
+			setLoading(false);
+		});
+	}, []);
+
+	return (
+		<div className='App'>
+			{
+				!loading
+					? <DataTable data={data} />
+					: <Loading />
+			}
+		</div>
+	)
 }
-
-export default App;
